@@ -11,6 +11,7 @@
     })
   </script>
 
+
   
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -694,7 +695,9 @@
     }
 
     intervalId = setInterval(draw, rainSpeed);
-    window.addEventListener('keydown', stopMatrix);
+    // Deferred so the Enter keypress that triggered this command
+    // (still bubbling up to window) doesn't instantly stop it.
+    setTimeout(() => window.addEventListener('keydown', stopMatrix), 0);
   }
 
   // ---------- COMMAND ROUTER ----------
